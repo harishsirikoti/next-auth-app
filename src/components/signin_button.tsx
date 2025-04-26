@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 export default function SignIn() {
   return (
     <div className="flex flex-col gap-2">
+      {process.env.OKTA_LOGIN_REQUIRED=='true'?
       <form
         action={async () => {
           "use server";
@@ -13,8 +14,8 @@ export default function SignIn() {
         <Button type="submit" variant="outline" className="w-full">
           Signin with Okta
         </Button>
-      </form>
-      <form
+      </form>:null}
+      {process.env.GOOGLE_LOGIN_REQUIRED=='true'?<form
         action={async () => {
           "use server";
           await signIn("google");
@@ -23,7 +24,8 @@ export default function SignIn() {
         <Button type="submit" variant="outline" className="w-full">
           Signin with Google
         </Button>
-      </form>
+      </form>:null}
+      {process.env.GITHUB_LOGIN_REQUIRED=='true'?
       <form
         action={async () => {
           "use server";
@@ -33,7 +35,7 @@ export default function SignIn() {
         <Button type="submit" variant="outline" className="w-full">
           Signin with Github
         </Button>
-      </form>
+      </form>:null}
     </div>
   );
 }

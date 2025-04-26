@@ -19,6 +19,7 @@ export async function AppSidebar() {
   if (session?.user?.image) {
     imageUrl = session.user.image;
   }
+  
   // Menu items.
   const items = [
     {

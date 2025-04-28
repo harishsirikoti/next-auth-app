@@ -1,15 +1,10 @@
-import { redirect } from 'next/navigation';
-import { auth } from '@/auth';
 import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { SquareArrowOutUpRight } from 'lucide-react';
 import { RadialGaugeChart } from '@/components/RadialGraph';
 const page = async () => {
-    const session = await auth();
-    if(!session?.user){
-        redirect("/");
-    }
+
     const useFullLinks= [
       {
         title: "Pdf Generator in NextJS",

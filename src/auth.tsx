@@ -11,11 +11,19 @@ function generateHash(input:string) {
   const hash = crypto.createHash("sha256").update(input).digest("hex");
   return hash;
 }
+let tem_providers=[]
+if (process.env.AUTH_OKTA_ID&&process.env.AUTH_OKTA_SECRET&&process.env.OKTA_LOGIN_REQUIRED=='true') {
+  tem_providers.push(Okta);
+}
+if (process.env.AUTH_GOOGLE_ID&&process.env.AUTH_GOOGLE_SECRET&&process.env.GOOGLE_LOGIN_REQUIRED=='true') {
+  tem_providers.push(Google);
+}
+if (process.env.AUTH_GITHUB_ID&&process.env.AUTH_GITHUB_SECRET&&process.env.GITHUB_LOGIN_REQUIRED=='true') {
+  tem_providers.push(Github);
+}
 export const { handlers, signIn, signOut, auth } = NextAuth({
-  providers: [
-    Okta,
-    Google,
-    Github,
+  providers: [...tem_providers,
+    // ...add more providers here
     credentials({
       name: "Credentials",
       credentials: {

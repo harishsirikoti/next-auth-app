@@ -8,7 +8,7 @@ npm i
 ## DB setup using docker 
 If you dont need to use docker you can skip this step.
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 set the DB url to 
 DATABASE_URL="postgresql://user1:password123@localhost:5432/mydb?schema=public"
@@ -19,6 +19,11 @@ npx prisma migrate dev --name init
 npx prisma db push
 ```
 
+### to get auth secret
+AUTH_SECRET
+```bash
+openssl rand -base64 32
+```
 
 ## Getting Started
 
